@@ -1,19 +1,16 @@
-<h2>Entries</h2>
+<h1>Places I've Been</h1>
+
 <ul>
-  <% if @entries.present? %>
-    <% @entries.each do |entry| %>
-      <li><%= entry.title %>: <%= entry.content %></li>
-    <% end %>
-  <% else %>
-    <p>No entries found. <%= link_to 'Add an Entry', new_place_entry_path(@place) %></p>
+  <% @places.each do |place| %>
+    <li>
+      <%= link_to place.name, place_path(place) %>
+      <ul>
+        <% place.entries.each do |entry| %>
+          <li><%= entry.title %>: <%= entry.content %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 
-<div>
-  <% @places.each do |place| %>
-    <li>
-      <%= link_to place.name, place_path(place) %> |
-      <%= link_to 'Add an Entry', new_place_entry_path(place) %>
-    </li>
-  <% end %>
-</div>
+<%= link_to 'Add a New Place', new_place_path, class: 'button' %>

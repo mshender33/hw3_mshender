@@ -5,14 +5,18 @@
     <%= f.label :name, "Place Name" %>
     <%= f.text_field :name, required: true %>
   </div>
-  
+
   <div>
+    <h3>Entries</h3>
     <%= f.fields_for :entries do |entry_fields| %>
-      <%= entry_fields.label :title, "Entry Title" %>
-      <%= entry_fields.text_field :title, required: true %>
-      
-      <%= entry_fields.label :content, "Entry Content" %>
-      <%= entry_fields.text_field :content, required: true %>
+      <div>
+        <%= entry_fields.label :title, "Entry Title" %>
+        <%= entry_fields.text_field :title, required: true %>
+      </div>
+      <div>
+        <%= entry_fields.label :content, "Entry Content" %>
+        <%= entry_fields.text_area :content, required: true %>  <!-- Ensure field name matches the DB column -->
+      </div>
     <% end %>
   </div>
 

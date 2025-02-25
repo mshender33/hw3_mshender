@@ -1,8 +1,5 @@
 class Entry < ApplicationRecord
-  # talks to the "entries" table
-end
-
-class Entry < ApplicationRecord
   belongs_to :place
-  validates :title, :content, presence: true
+  validates :title, presence: true
+  validates :content, presence: true  # Ensure content is required
 end
