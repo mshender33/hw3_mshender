@@ -7,6 +7,16 @@
   </div>
   
   <div>
+    <%= f.fields_for :entries do |entry_fields| %>
+      <%= entry_fields.label :title, "Entry Title" %>
+      <%= entry_fields.text_field :title, required: true %>
+      
+      <%= entry_fields.label :content, "Entry Content" %>
+      <%= entry_fields.text_field :content, required: true %>
+    <% end %>
+  </div>
+
+  <div>
     <%= f.submit "Create Place" %>
   </div>
 <% end %>

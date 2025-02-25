@@ -1,8 +1,14 @@
-<h1><%= @place.name %></h1>
 <h2>Entries</h2>
 <ul>
-  <% @entries.each do |entry| %>
-    <li><%= entry.title %>: <%= entry.content %></li>
+  <% if @entries.present? %>
+    <% @entries.each do |entry| %>
+      <li><%= entry.title %>: <%= entry.content %></li>
+    <% end %>
+  <% else %>
+    <p>No entries found. <%= link_to 'Add an Entry', new_place_entry_path(@place) %></p>
   <% end %>
 </ul>
-<%= link_to 'Add Entry', new_place_entry_path(@place) %>
+
+<div>
+  <%= link_to 'Add a New Place', new_place_path, class: 'button' %>
+</div>
