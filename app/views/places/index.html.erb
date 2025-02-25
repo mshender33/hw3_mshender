@@ -1,16 +1,93 @@
-<h1>Places I've Been</h1>
-
-<ul>
-  <% @places.each do |place| %>
-    <li>
-      <%= link_to place.name, place_path(place) %>
-      <ul>
-        <% place.entries.each do |entry| %>
-          <li><%= entry.title %>: <%= entry.content %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Add a New Place', new_place_path, class: 'button' %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Journal</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #FAF884; /* Light Yellow */
+            color: #000;
+            text-align: center;
+            cursor: url('https://cur.cursors-4u.net/nature/nat-3/nat216.cur'), auto; /* Mitten Cursor */
+        }
+        marquee {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF66B2; /* Lighter Magenta */
+            background-color: #9B6BAF; /* Lighter Purple */
+            padding: 10px;
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px #FF007E;
+        }
+        .content {
+            width: 80%;
+            margin: auto;
+            background: #78D1B6; /* Teal Green */
+            padding: 20px;
+            border: 5px solid #5C2483; /* Dark Purple */
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+        .place-item {
+            background: #FFFFFF; /* White */
+            padding: 20px;
+            border: 3px solid #5C2483; /* Dark Purple */
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+            text-align: center;
+        }
+        .place-item a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        .place-item:hover {
+            transform: scale(1.05);
+            background: #E5007E; /* Magenta */
+            color: #FFF;
+        }
+        .button {
+            background-color: #5C2483; /* Dark Purple */
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #E5007E; /* Magenta */
+        }
+    </style>
+</head>
+<body>
+    <marquee>🌍✈️🗺️🏝️🚗 PLACES 🚂🏕️🏰🏜️🌎</marquee>
+    <div class="content">
+        <h1>Places I've Been</h1>
+        <ul class="places-grid">
+            <% @places.each do |place| %>
+                <li class="place-item">
+                    <a href="<%= place_path(place) %>"><%= place.name %></a>
+                </li>
+            <% end %>
+        </ul>
+        <%= link_to 'Add a New Place', new_place_path, class: 'button' %>
+    </div>
+</body>
+</html>

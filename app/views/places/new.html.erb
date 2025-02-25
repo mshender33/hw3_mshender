@@ -1,26 +1,102 @@
-<h1>Add a New Place</h1>
-
-<%= form_with model: @place, local: true do |f| %>
-  <div>
-    <%= f.label :name, "Place Name" %>
-    <%= f.text_field :name, required: true %>
-  </div>
-
-  <div>
-    <h3>Entries</h3>
-    <%= f.fields_for :entries do |entry_fields| %>
-      <div>
-        <%= entry_fields.label :title, "Entry Title" %>
-        <%= entry_fields.text_field :title, required: true %>
-      </div>
-      <div>
-        <%= entry_fields.label :content, "Entry Content" %>
-        <%= entry_fields.text_area :content, required: true %>  <!-- Ensure field name matches the DB column -->
-      </div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= f.submit "Create Place" %>
-  </div>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Journal</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #FAF884; /* Light Yellow */
+            color: #000;
+            text-align: center;
+            cursor: url('https://cur.cursors-4u.net/nature/nat-3/nat216.cur'), auto; /* Mitten Cursor */
+        }
+        marquee {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF66B2; /* Lighter Magenta */
+            background-color: #9B6BAF; /* Lighter Purple */
+            padding: 10px;
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px #FF007E;
+            text-align: center;
+        }
+        .content {
+            width: 80%;
+            margin: auto;
+            background: #78D1B6; /* Teal Green */
+            padding: 40px;
+            border: 5px solid #5C2483; /* Dark Purple */
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            font-size: 18px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .button {
+            background-color: #5C2483; /* Dark Purple */
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #E5007E; /* Magenta */
+        }
+    </style>
+</head>
+<body>
+    <marquee>🌍✈️🗺️🏝️🚗 PLACES 🚂🏕️🏰🏜️🌎</marquee>
+    <div class="content">
+        <h1>Add a New Place</h1>
+        <div class="form-container">
+            <%= form_with model: @place, local: true do |f| %>
+              <div>
+                <label for="place_name">Place Name</label>
+                <%= f.text_field :name, required: true %>
+              </div>
+              <div>
+                <h2>Entries</h2>
+                <%= f.fields_for :entries do |entry_fields| %>
+                  <div>
+                    <label for="entry_title">Entry Title</label>
+                    <%= entry_fields.text_field :title, required: true %>
+                  </div>
+                  <div>
+                    <label for="entry_content">Entry Content</label>
+                    <%= entry_fields.text_area :content, required: true %>
+                  </div>
+                <% end %>
+              </div>
+              <div>
+                <%= f.submit "Create Place", class: "button" %>
+              </div>
+            <% end %>
+        </div>
+    </div>
+</body>
+</html>
